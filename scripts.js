@@ -9,7 +9,7 @@ function getComputerChoice() {
         return "scissors";
     }
 }
-console.log(getComputerChoice());
+
 //Function to play single round of the game with user input
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === "rock" && computerSelection === "rock") {
