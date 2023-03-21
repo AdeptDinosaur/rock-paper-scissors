@@ -31,11 +31,33 @@ function playRound(playerSelection, computerSelection) {
     } else if (playerSelection === "scissors" && computerSelection === "scissors") {
         return "You both have scissors therefore a tie.";
     }
+
+
+
 }
 
-let userPlay = prompt("Please select rock, paper, or scissors");
-userPlay = userPlay.toLowerCase();
-let compPlay = getComputerChoice();
-console.log(playRound(userPlay, compPlay));
+
 
 //Game function to include 5 rounds of a single game
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    let tie = 0;
+    for (let i = 0; i < 5; i++) {
+        let userPlay = prompt("Please select rock, paper, or scissors");
+        userPlay = userPlay.toLowerCase();
+        let compPlay = getComputerChoice();
+        let result = playRound(userPlay, compPlay);
+        console.log(result);
+        
+        if (result.substring(4,7) === "win" ){
+            playerScore++;
+        } else if (result.substring(4,8) === "lose") {
+            computerScore++;
+        } else {
+            tie++;
+        }
+     }
+     console.log(`Final result: Player: ${playerScore}, Computer: ${computerScore}, with ties: ${tie}`)
+}
+game();
