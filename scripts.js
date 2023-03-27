@@ -40,29 +40,17 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-const computerSelection = getComputerChoice();
+//Integration of HTML to provide GUI and changed to first to 5
+let playerScore = 0;
+let computerScore = 0;
+let tie = 0;
+
 const buttons = document.querySelectorAll(".btn");
 buttons.forEach(btn => {
     btn.addEventListener('click', function() {
-        console.log(`Button ${this.textContent} was clicked.`);
-        console.log(playRound(this.textContent, getComputerChoice()));
-    });
-});
-
-
-
-//Game function to include 5 rounds of a single game
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    let tie = 0;
-    for (let i = 0; i < 5; i++) {
-        let userPlay = prompt("Please select rock, paper, or scissors");
-        userPlay = userPlay.toLowerCase();
-        let compPlay = getComputerChoice();
-        let result = playRound(userPlay, compPlay);
-        console.log(result);
-        
+        const selection = document.querySelector('.selection');
+        selection.textContent =`Button ${this.textContent} was clicked.`;
+        let result = playRound(this.textContent, getComputerChoice());
         if (result.substring(4,7) === "win" ){
             playerScore++;
         } else if (result.substring(4,8) === "lose") {
@@ -70,7 +58,16 @@ function game() {
         } else {
             tie++;
         }
-     }
-     console.log(`Final result: Player: ${playerScore}, Computer: ${computerScore}, with ties: ${tie}`)
-}
-//game();
+        const score = document.querySelector('.score');
+        score.textContent = `Results: Player: ${playerScore}, Computer: ${computerScore}, with ties: ${tie}`
+        if (playerScore === 5) {
+            score.textContent = 'Congratulations, you win first to 5!';
+        } else if (computerScore === 5) {
+            score.textContent = 'Unfortunately our computer overlords have won the day.';
+        }
+    });
+});
+
+
+
+
