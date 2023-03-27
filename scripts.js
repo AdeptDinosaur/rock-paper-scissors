@@ -10,8 +10,12 @@ function getComputerChoice() {
     }
 }
 
+
+
 //Function to play single round of the game with user input
 function playRound(playerSelection, computerSelection) {
+    
+    
     if (playerSelection === "rock" && computerSelection === "rock") {
         return "You both have rock therefore a tie.";
     } else if (playerSelection === "paper" && computerSelection === "rock") {
@@ -35,6 +39,15 @@ function playRound(playerSelection, computerSelection) {
 
 
 }
+
+const computerSelection = getComputerChoice();
+const buttons = document.querySelectorAll(".btn");
+buttons.forEach(btn => {
+    btn.addEventListener('click', function() {
+        console.log(`Button ${this.textContent} was clicked.`);
+        console.log(playRound(this.textContent, getComputerChoice()));
+    });
+});
 
 
 
@@ -60,4 +73,4 @@ function game() {
      }
      console.log(`Final result: Player: ${playerScore}, Computer: ${computerScore}, with ties: ${tie}`)
 }
-game();
+//game();
